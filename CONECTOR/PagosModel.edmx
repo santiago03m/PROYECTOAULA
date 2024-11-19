@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LaQuiebraLTDAModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Pagos">
+          <Key>
+            <PropertyRef Name="ID_Pago" />
+          </Key>
+          <Property Name="ID_Pago" Type="int" Nullable="false" />
+          <Property Name="ID_Credito" Type="int" />
+          <Property Name="Fecha_Pago" Type="date" />
+          <Property Name="Monto_Pago" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="Metodo_Pago" Type="varchar" MaxLength="20" />
+          <Property Name="Estado_Pago" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityContainer Name="LaQuiebraLTDAModel2StoreContainer">
+          <EntitySet Name="Pagos" EntityType="Self.Pagos" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LaQuiebraLTDAModel2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Pagos">
+          <Key>
+            <PropertyRef Name="ID_Pago" />
+          </Key>
+          <Property Name="ID_Pago" Type="Int32" Nullable="false" />
+          <Property Name="ID_Credito" Type="Int32" />
+          <Property Name="Fecha_Pago" Type="DateTime" Precision="0" />
+          <Property Name="Monto_Pago" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="Metodo_Pago" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Estado_Pago" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="LaQuiebraLTDAEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Pagos" EntityType="Self.Pagos" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LaQuiebraLTDAModel2StoreContainer" CdmEntityContainer="LaQuiebraLTDAEntities2">
+          <EntitySetMapping Name="Pagos">
+            <EntityTypeMapping TypeName="LaQuiebraLTDAModel2.Pagos">
+              <MappingFragment StoreEntitySet="Pagos">
+                <ScalarProperty Name="ID_Pago" ColumnName="ID_Pago" />
+                <ScalarProperty Name="ID_Credito" ColumnName="ID_Credito" />
+                <ScalarProperty Name="Fecha_Pago" ColumnName="Fecha_Pago" />
+                <ScalarProperty Name="Monto_Pago" ColumnName="Monto_Pago" />
+                <ScalarProperty Name="Metodo_Pago" ColumnName="Metodo_Pago" />
+                <ScalarProperty Name="Estado_Pago" ColumnName="Estado_Pago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
