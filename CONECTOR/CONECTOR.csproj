@@ -65,7 +65,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AccesoModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
     <Compile Include="Clientes.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
