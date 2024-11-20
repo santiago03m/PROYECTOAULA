@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
@@ -27,9 +28,26 @@ namespace API.Controllers
         }
 
         // POST: api/Cliente
-        public void Post([FromBody]string value)
+        public HttpResponseMessage Post([FromBody] Clientes objClientes)
         {
+            int resp = 0;
+            HttpResponseMessage objMenRespuesta = null;
+            try
+            {
+                using (LaQuiebraLTDAEntities objEntidad = new LaQuiebraLTDAEntities())
+                {
+                    objEntidad.Entry(objClientes).State = EntityState.Added;
+                    resp = objEntidad.SaveChanges();
+                    objMenRespuesta = Request.CreateResponse(HttpStatusCode.OK, resp);
+                }
+            }
+            catch (Exception er)
+            {
+                objMenRespuesta = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, er.Message);
+            }
+            return objMenRespuesta;
         }
+
 
         // PUT: api/Cliente/5
         public void Put(int id, [FromBody]string value)
