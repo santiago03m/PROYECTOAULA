@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EDECB10E-DDDD-4E4F-B38B-6A0CE5F2FD7E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>GUIClientes</RootNamespace>
+    <AssemblyName>GUIClientes</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=112.1.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.112.1.0\lib\net471\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CambiarDatosCreditos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CambiarDatosCreditos.Designer.cs">
+      <DependentUpon>CambiarDatosCreditos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clientes.cs" />
+    <Compile Include="ConsultaporCodigo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsultaporCodigo.Designer.cs">
+      <DependentUpon>ConsultaporCodigo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Creditos.cs" />
+    <Compile Include="DBapi.cs" />
+    <Compile Include="IngresarCredito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IngresarCredito.Designer.cs">
+      <DependentUpon>IngresarCredito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maestro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maestro.Designer.cs">
+      <DependentUpon>Maestro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModificarCliente.Designer.cs">
+      <DependentUpon>ModificarCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PagoCuota.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PagoCuota.Designer.cs">
+      <DependentUpon>PagoCuota.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PorAcreedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PorAcreedores.Designer.cs">
+      <DependentUpon>PorAcreedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RetirarCredito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RetirarCredito.Designer.cs">
+      <DependentUpon>RetirarCredito.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CambiarDatosCreditos.resx">
+      <DependentUpon>CambiarDatosCreditos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsultaporCodigo.resx">
+      <DependentUpon>ConsultaporCodigo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IngresarCredito.resx">
+      <DependentUpon>IngresarCredito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maestro.resx">
+      <DependentUpon>Maestro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModificarCliente.resx">
+      <DependentUpon>ModificarCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PagoCuota.resx">
+      <DependentUpon>PagoCuota.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PorAcreedores.resx">
+      <DependentUpon>PorAcreedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="RetirarCredito.resx">
+      <DependentUpon>RetirarCredito.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ProyectoAula\CONECTOR\CONECTOR.csproj">
+      <Project>{01c48344-8b72-4a8b-b44a-498d08865e16}</Project>
+      <Name>CONECTOR</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
