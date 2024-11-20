@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="Vista" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="VistaCreditoCliente.aspx.cs" Inherits="LaQuiebraWeb.VistaCreditoCliente" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <h1>Créditos de Clientes: Informacion relevante respecto a clientes</h1>
     <asp:SqlDataSource ID="SqlDataSourceVistaCreditoCliente" runat="server" 
         ConnectionString="<%$ ConnectionStrings:cadenaSQL %>" 
         ProviderName="System.Data.SqlClient"
