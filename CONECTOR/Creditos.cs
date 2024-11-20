@@ -21,5 +21,6 @@ namespace CONECTOR
         public Nullable<System.DateTime> Fecha_Vencimiento { get; set; }
         public Nullable<decimal> Tasa_Interes { get; set; }
         public string Estado { get; set; }
+        public int Cuotas { get; set; }
     }
 }
