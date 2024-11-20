@@ -82,10 +82,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CreditoModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CreditoModel.Designer.cs">
+    <Compile Include="CreditosModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CreditoModel.edmx</DependentUpon>
+      <DependentUpon>CreditosModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Creditos.cs">
       <DependentUpon>CreditoModel.tt</DependentUpon>
@@ -143,12 +143,12 @@
     <None Include="ClienteModel.edmx.diagram">
       <DependentUpon>ClienteModel.edmx</DependentUpon>
     </None>
-    <EntityDeploy Include="CreditoModel.edmx">
+    <EntityDeploy Include="CreditosModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CreditoModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>CreditosModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="CreditoModel.edmx.diagram">
-      <DependentUpon>CreditoModel.edmx</DependentUpon>
+    <None Include="CreditosModel.edmx.diagram">
+      <DependentUpon>CreditosModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <EntityDeploy Include="PagosModel.edmx">
@@ -172,12 +172,12 @@
     </Content>
     <Content Include="CreditoModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CreditoModel.edmx</DependentUpon>
+      <DependentUpon>CreditosModel.edmx</DependentUpon>
       <LastGenOutput>CreditoModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="CreditoModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CreditoModel.edmx</DependentUpon>
+      <DependentUpon>CreditosModel.edmx</DependentUpon>
       <LastGenOutput>CreditoModel.cs</LastGenOutput>
     </Content>
     <Content Include="Model1.Context.tt">
