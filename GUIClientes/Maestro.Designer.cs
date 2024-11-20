@@ -39,6 +39,8 @@
             this.novedadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.realizarPagoDeCuotaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultaWebToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vistaWebToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,12 +50,15 @@
             this.consultaToolStripMenuItem,
             this.actualizaciónToolStripMenuItem,
             this.novedadesToolStripMenuItem,
-            this.salirToolStripMenuItem});
+            this.salirToolStripMenuItem,
+            this.consultaWebToolStripMenuItem,
+            this.vistaWebToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // consultaToolStripMenuItem
             // 
@@ -129,6 +134,21 @@
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
             this.salirToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
             this.salirToolStripMenuItem.Text = "Salir";
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
+            // 
+            // consultaWebToolStripMenuItem
+            // 
+            this.consultaWebToolStripMenuItem.Name = "consultaWebToolStripMenuItem";
+            this.consultaWebToolStripMenuItem.Size = new System.Drawing.Size(130, 20);
+            this.consultaWebToolStripMenuItem.Text = "Maestro-Detalle Web";
+            this.consultaWebToolStripMenuItem.Click += new System.EventHandler(this.consultaWebToolStripMenuItem_Click);
+            // 
+            // vistaWebToolStripMenuItem
+            // 
+            this.vistaWebToolStripMenuItem.Name = "vistaWebToolStripMenuItem";
+            this.vistaWebToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.vistaWebToolStripMenuItem.Text = "Vista Web";
+            this.vistaWebToolStripMenuItem.Click += new System.EventHandler(this.vistaWebToolStripMenuItem_Click);
             // 
             // Maestro
             // 
@@ -148,16 +168,18 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem consultaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem porCodigoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nombreAcreedoresToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem actualizaciónToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ingresarCreditoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem retirarCreditoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cambiarDatosCreditoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem novedadesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem realizarPagoDeCuotaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
+        public System.Windows.Forms.MenuStrip menuStrip1;
+        public System.Windows.Forms.ToolStripMenuItem consultaToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem porCodigoToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem nombreAcreedoresToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem actualizaciónToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem ingresarCreditoToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem retirarCreditoToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem cambiarDatosCreditoToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem novedadesToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem realizarPagoDeCuotaToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem consultaWebToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem vistaWebToolStripMenuItem;
     }
 }

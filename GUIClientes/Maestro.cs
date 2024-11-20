@@ -29,7 +29,7 @@ namespace GUIClientes
             consultaAcreedores.Show();
         }
 
-        private void ingresarCreditoToolStripMenuItem_Click(object sender, EventArgs e)
+        public void ingresarCreditoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             IngresarCredito ingresarCredito = new IngresarCredito();
             ingresarCredito.Show();
@@ -51,6 +51,28 @@ namespace GUIClientes
         {
             PagoCuota Pago = new PagoCuota();
             Pago.Show();
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void consultaWebToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MaestroDetalleWeb maestroDetalle = new MaestroDetalleWeb();
+            maestroDetalle.Show();
+        }
+
+        private void vistaWebToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Vistaweb vista = new Vistaweb();
+            vista.Show();
         }
     }
 }

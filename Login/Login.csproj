@@ -89,5 +89,11 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GUIClientes\GUIClientes.csproj">
+      <Project>{EDECB10E-DDDD-4E4F-B38B-6A0CE5F2FD7E}</Project>
+      <Name>GUIClientes</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

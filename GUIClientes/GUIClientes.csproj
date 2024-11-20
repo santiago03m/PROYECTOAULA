@@ -67,6 +67,12 @@
     <Compile Include="ConsultaporCodigo.Designer.cs">
       <DependentUpon>ConsultaporCodigo.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsultaWeb.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsultaWeb.Designer.cs">
+      <DependentUpon>ConsultaWeb.cs</DependentUpon>
+    </Compile>
     <Compile Include="Creditos.cs" />
     <Compile Include="DBapi.cs" />
     <Compile Include="IngresarCredito.cs">
@@ -80,6 +86,12 @@
     </Compile>
     <Compile Include="Maestro.Designer.cs">
       <DependentUpon>Maestro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MaestroDetalleWeb.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MaestroDetalleWeb.Designer.cs">
+      <DependentUpon>MaestroDetalleWeb.cs</DependentUpon>
     </Compile>
     <Compile Include="ModificarCliente.cs">
       <SubType>Form</SubType>
@@ -107,17 +119,29 @@
     <Compile Include="RetirarCredito.Designer.cs">
       <DependentUpon>RetirarCredito.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistaweb.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistaweb.Designer.cs">
+      <DependentUpon>Vistaweb.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CambiarDatosCreditos.resx">
       <DependentUpon>CambiarDatosCreditos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsultaporCodigo.resx">
       <DependentUpon>ConsultaporCodigo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConsultaWeb.resx">
+      <DependentUpon>ConsultaWeb.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="IngresarCredito.resx">
       <DependentUpon>IngresarCredito.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Maestro.resx">
       <DependentUpon>Maestro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MaestroDetalleWeb.resx">
+      <DependentUpon>MaestroDetalleWeb.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModificarCliente.resx">
       <DependentUpon>ModificarCliente.cs</DependentUpon>
@@ -140,6 +164,9 @@
     </Compile>
     <EmbeddedResource Include="RetirarCredito.resx">
       <DependentUpon>RetirarCredito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistaweb.resx">
+      <DependentUpon>Vistaweb.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
