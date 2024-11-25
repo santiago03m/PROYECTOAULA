@@ -29,5 +29,42 @@ namespace Login
 
         }
 
+        public static bool Update(string urlApi, Usuario usuario)
+        {
+            HttpWebRequest objPedido = (HttpWebRequest)WebRequest.Create(urlApi);
+            objPedido.Method = "PUT";
+            objPedido.ContentType = "application/json";
+            objPedido.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101  Firefox/23.0";
+            objPedido.Proxy = null;
+
+            string jsonData = JsonConvert.SerializeObject(usuario);
+            byte[] byteArray = Encoding.UTF8.GetBytes(jsonData);
+
+            using (Stream dataStream = objPedido.GetRequestStream())
+            {
+                dataStream.Write(byteArray, 0, byteArray.Length);
+            }
+
+            try
+            {
+                HttpWebResponse objRespuesta = (HttpWebResponse)objPedido.GetResponse();
+                return objRespuesta.StatusCode == HttpStatusCode.OK;
+            }
+            catch (WebException ex)
+            {
+                if (ex.Response != null)
+                {
+                    using (var errorResponse = (HttpWebResponse)ex.Response)
+                    {
+                        if (errorResponse.StatusCode == HttpStatusCode.NotFound)
+                        {
+                            return false;
+                        }
+                    }
+                }
+                throw;
+            }
+        }
+
     }
 }

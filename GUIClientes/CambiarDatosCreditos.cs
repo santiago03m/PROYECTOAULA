@@ -10,7 +10,6 @@ namespace GUIClientes
 {
     public partial class CambiarDatosCreditos : Form
     {
-        string url = "http://localhost:55421/api/Creditos";
 
         public CambiarDatosCreditos()
         {
@@ -21,6 +20,7 @@ namespace GUIClientes
 
         private void BotonConsultar_Click(object sender, EventArgs e)
         {
+            string url = "http://localhost:55421/api/Creditos";
             try
             {
                 string jsonResponse = DBapi.Get(url).ToString();
@@ -50,9 +50,6 @@ namespace GUIClientes
 
         private void BotonModificar_Click(object sender, EventArgs e)
         {
-
-         
-        
             try
             {
                 // Validar datos de entrada
@@ -78,39 +75,33 @@ namespace GUIClientes
                     return;
                 }
 
-                objconexion.Open();
-                string consulta = "UPDATE Creditos SET [ID_Cliente] = @ID_Cliente, [Monto_Total] = @Monto_Total, [Fecha_Inicio] = @Fecha_Inicio, " +
-                                 "[Fecha_Vencimiento] = @Fecha_Vencimiento, [Tasa_Interes] = @Tasa_Interes, [Estado] = @Estado, [Cuotas] = @Cuotas " +
-                                 "WHERE [ID_Credito] = @ID_Credito";
-
-                SqlCommand objcomando = new SqlCommand(consulta, objconexion);
-                objcomando.Parameters.AddWithValue("@ID_Cliente", Int32.Parse(textBoxCodigoCliente.Text));
-                objcomando.Parameters.AddWithValue("@Monto_Total", montoTotal);
-                objcomando.Parameters.AddWithValue("@Fecha_Inicio", fechaInicio.ToString("yyyy-MM-dd"));
-                objcomando.Parameters.AddWithValue("@Fecha_Vencimiento", fechaVencimiento.ToString("yyyy-MM-dd"));
-                objcomando.Parameters.AddWithValue("@Tasa_Interes", 10); // Ejemplo estático
-                objcomando.Parameters.AddWithValue("@Estado", textBoxEstado.Text);
-                objcomando.Parameters.AddWithValue("@Cuotas", 10); // Ejemplo estático
-                objcomando.Parameters.AddWithValue("@ID_Credito", Int32.Parse(textBoxCodigoCredito.Text));
-
-                int cant = objcomando.ExecuteNonQuery();
-
-                if (cant > 0)
+                Credito creditoActualizado = new Credito
                 {
-                    MessageBox.Show($"{cant} datos actualizados correctamente");
+                    ID_Credito = Int32.Parse(textBoxCodigoCredito.Text),
+                    ID_Cliente = Int32.Parse(textBoxCodigoCliente.Text),
+                    Monto_Total = montoTotal,
+                    Fecha_Inicio = fechaInicio,
+                    Fecha_Vencimiento = fechaVencimiento,
+                    Tasa_Interes = 10, // Ejemplo estático
+                    Estado = textBoxEstado.Text,
+                    Cuotas = 10 // Ejemplo estático
+                };
+
+                string urlApi = "http://localhost:55421/api/Creditos";
+                bool resultado = DBapi.UpdateCredito(urlApi, creditoActualizado.ID_Credito, creditoActualizado);
+
+                if (resultado)
+                {
+                    MessageBox.Show("Datos actualizados correctamente.");
                 }
                 else
                 {
-                    MessageBox.Show("ERROR: No se han podido actualizar los datos");
+                    MessageBox.Show("ERROR: No se han podido actualizar los datos.");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error: {ex.Message}");
-            }
-            finally
-            {
-                objconexion.Close();
             }
         }
 

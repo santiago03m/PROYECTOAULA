@@ -74,5 +74,10 @@ namespace GUIClientes
             Vistaweb vista = new Vistaweb();
             vista.Show();
         }
+
+        private void consultaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

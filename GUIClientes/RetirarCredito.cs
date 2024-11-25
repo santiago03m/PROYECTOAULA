@@ -16,7 +16,6 @@ namespace GUIClientes
 {
     public partial class RetirarCredito : Form
     {
-        string url = "http://localhost:55421/api/Creditos";
         public RetirarCredito()
         {
             InitializeComponent();
@@ -24,6 +23,7 @@ namespace GUIClientes
 
         private void BotonConsultar_Click(object sender, EventArgs e)
         {
+            string url = "http://localhost:55421/api/Creditos";
             try
             {
                 string jsonResponse = DBapi.Get(url).ToString();
@@ -58,52 +58,41 @@ namespace GUIClientes
                     return;
                 }
                 int idCredito = Int32.Parse(textBoxIDCredito.Text);
-                using (SqlConnection objconexion = new SqlConnection("Data Source=localhost;Initial Catalog=LaQuiebraLTDA;Integrated Security=SSPI;"))
+                string urlApi = "http://localhost:55421/api/Creditos";
+
+                // Verificar si el monto total es 0 antes de eliminar
+                string consultaUrl = urlApi + "/" + idCredito;
+                string jsonResponse = DBapi.Get(consultaUrl).ToString();
+                var credito = JsonConvert.DeserializeObject<Credito>(jsonResponse);
+
+                if (credito == null)
                 {
-                    objconexion.Open();
-                    string consultaMonto = "SELECT [Monto_Total] FROM Creditos WHERE [ID_Credito] = @ID_Credito";
-                    using (SqlCommand objComandoMonto = new SqlCommand(consultaMonto, objconexion))
+                    MessageBox.Show("El crédito con el ID especificado no existe.");
+                    return;
+                }
+
+                if (credito.Monto_Total == 0)
+                {
+                    bool resultado = DBapi.DeleteCredito(urlApi, idCredito);
+                    if (resultado)
                     {
-                        objComandoMonto.Parameters.AddWithValue("@ID_Credito", idCredito);
-                        var result = objComandoMonto.ExecuteScalar();
-                        if (result == null)
-                        {
-                            MessageBox.Show("El crédito con el ID especificado no existe.");
-                            return;
-                        }
-                        decimal montoTotal = Convert.ToDecimal(result);
-                        if (montoTotal == 0)
-                        {
-                            string consultaBorrar = "DELETE FROM Creditos WHERE [ID_Credito] = @ID_Credito";
-                            using (SqlCommand objComandoBorrar = new SqlCommand(consultaBorrar, objconexion))
-                            {
-                                objComandoBorrar.Parameters.AddWithValue("@ID_Credito", idCredito);
-
-                                int cant = objComandoBorrar.ExecuteNonQuery();
-
-                                if (cant > 0)
-                                {
-                                    textBoxSalida.Text = ("El crédito ha sido eliminado correctamente.");
-                                    textBoxIDCredito.Clear(); 
-                                }
-                                else
-                                {
-                                     textBoxSalida.Text= ("ERROR: No se ha podido eliminar el registro.");
-                                }
-                            }
-                        }
-                        else
-                        {
-                            textBoxSalida.Text = ("No se puede eliminar el crédito. El Monto Total debe ser 0.");
-                        }
+                        textBoxSalida.Text = "El crédito ha sido eliminado correctamente.";
+                        textBoxIDCredito.Clear();
                     }
+                    else
+                    {
+                        textBoxSalida.Text = "ERROR: No se ha podido eliminar el registro.";
+                    }
+                }
+                else
+                {
+                    textBoxSalida.Text = "No se puede eliminar el crédito. El Monto Total debe ser 0.";
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error: {ex.Message}");
             }
-
         }
 
         private void RetirarCredito_Load(object sender, EventArgs e)

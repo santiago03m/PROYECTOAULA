@@ -73,7 +73,7 @@
     <Compile Include="ConsultaWeb.Designer.cs">
       <DependentUpon>ConsultaWeb.cs</DependentUpon>
     </Compile>
-    <Compile Include="Creditos.cs" />
+    <Compile Include="Credito.cs" />
     <Compile Include="DBapi.cs" />
     <Compile Include="IngresarCredito.cs">
       <SubType>Form</SubType>

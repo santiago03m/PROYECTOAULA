@@ -19,10 +19,15 @@ namespace API.Controllers
             }
         }
 
-        // GET: api/Acceso/5
-        public string Get(int id)
+        // GET: api/Acceso/usuario/{id}
+        [HttpGet]
+        [Route("api/Acceso/usuario/{id}")]
+        public Control_Acceso Get(int id)
         {
-            return "value";
+            using (LaQuiebraLTDAEntities3 objEntidad = new LaQuiebraLTDAEntities3())
+            {
+                return objEntidad.Control_Acceso.FirstOrDefault(c => c.ID_Usuario == id);
+            }
         }
 
         // POST: api/Acceso
@@ -30,9 +35,33 @@ namespace API.Controllers
         {
         }
 
-        // PUT: api/Acceso/5
-        public void Put(int id, [FromBody]string value)
+        // PUT: api/Acceso/actualizar_usuario/{id}
+        [HttpPut]
+        [Route("api/Acceso/actualizar_usuario/{id}")]
+        public IHttpActionResult Put(int id, [FromBody] Control_Acceso usuario)
         {
+            if (usuario == null || usuario.ID_Usuario != id)
+            {
+                return BadRequest();
+            }
+
+            using (LaQuiebraLTDAEntities3 objEntidad = new LaQuiebraLTDAEntities3())
+            {
+                var usuarioExistente = objEntidad.Control_Acceso.FirstOrDefault(c => c.ID_Usuario == id);
+                if (usuarioExistente == null)
+                {
+                    return NotFound();
+                }
+
+                usuarioExistente.Nombre_Usuario = usuario.Nombre_Usuario;
+                usuarioExistente.Contrasena = usuario.Contrasena;
+                usuarioExistente.Rol = usuario.Rol;
+                usuarioExistente.Ultimo_Acceso = usuario.Ultimo_Acceso;
+                usuarioExistente.Estado_Cuenta = usuario.Estado_Cuenta;
+
+                objEntidad.SaveChanges();
+                return Ok();
+            }
         }
 
         // DELETE: api/Acceso/5

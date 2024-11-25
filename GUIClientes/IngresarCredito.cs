@@ -25,7 +25,6 @@ namespace GUIClientes
         {
             try
             {
-
                 if (string.IsNullOrEmpty(textBoxIDCliente.Text) || string.IsNullOrEmpty(textBoxMontoTotal.Text) ||
                     string.IsNullOrEmpty(textBoxFechaInicio.Text) || string.IsNullOrEmpty(textBoxFechaVencimiento.Text) ||
                     string.IsNullOrEmpty(textBoxEstado.Text))
@@ -34,14 +33,12 @@ namespace GUIClientes
                     return;
                 }
 
-
                 int montoTotal = 0;
                 if (!Int32.TryParse(textBoxMontoTotal.Text, out montoTotal))
                 {
                     MessageBox.Show("Monto Total debe ser un número válido.");
                     return;
                 }
-
 
                 DateTime fechaInicio, fechaVencimiento;
                 if (!DateTime.TryParse(textBoxFechaInicio.Text, out fechaInicio) ||
@@ -51,37 +48,28 @@ namespace GUIClientes
                     return;
                 }
 
-
-                using (SqlConnection objconexion = new SqlConnection("Data Source=localhost;Initial Catalog=LaQuiebraLTDA;Integrated Security=SSPI;"))
+                Credito nuevoCredito = new Credito
                 {
+                    ID_Credito = Int32.Parse(textBoxIDCredito.Text),
+                    ID_Cliente = Int32.Parse(textBoxIDCliente.Text),
+                    Monto_Total = montoTotal,
+                    Fecha_Inicio = fechaInicio,
+                    Fecha_Vencimiento = fechaVencimiento,
+                    Tasa_Interes = 10,
+                    Estado = "Activo",
+                    Cuotas = 10
+                };
 
-                    objconexion.Open();
+                string urlApi = "http://localhost:55421/api/Creditos/credito_nuevo";
+                bool resultado = DBapi.CreateCredito(urlApi, nuevoCredito);
 
-
-                    string consulta = "INSERT INTO Creditos ([ID_Credito], [ID_Cliente], [Monto_Total], [Fecha_Inicio], [Fecha_Vencimiento], [Tasa_Interes], [Estado], [Cuotas]) " +
-                                      "VALUES (@ID_Credito,@ID_Cliente, @Monto_Total, @Fecha_Inicio, @Fecha_Vencimiento, @Tasa_Interes, @Estado, @Cuotas)";
-
-
-                    using (SqlCommand objcomando = new SqlCommand(consulta, objconexion))
-                    {
-                        objcomando.Parameters.AddWithValue("@ID_Credito", Int32.Parse(textBoxIDCredito.Text));
-                        objcomando.Parameters.AddWithValue("@ID_Cliente", Int32.Parse(textBoxIDCliente.Text));
-                        objcomando.Parameters.AddWithValue("@Monto_Total", montoTotal);
-                        objcomando.Parameters.AddWithValue("@Fecha_Inicio", fechaInicio.ToString("yyyy-MM-dd"));
-                        objcomando.Parameters.AddWithValue("@Fecha_Vencimiento", fechaVencimiento.ToString("yyyy-MM-dd"));
-                        objcomando.Parameters.AddWithValue("@Tasa_Interes", 10);
-                        objcomando.Parameters.AddWithValue("@Estado", textBoxEstado.Text);
-                        objcomando.Parameters.AddWithValue("@Cuotas", 10);
-                        int cant = objcomando.ExecuteNonQuery();
-                        if (cant > 0)
-                        {
-                            textBoxSalida.Text = ("Nuevo registro agregado correctamente.");
-                        }
-                        else
-                        {
-                            MessageBox.Show("ERROR: No se ha podido agregar el registro.");
-                        }
-                    }
+                if (resultado)
+                {
+                    textBoxSalida.Text = "Nuevo registro agregado correctamente.";
+                }
+                else
+                {
+                    MessageBox.Show("ERROR: No se ha podido agregar el registro.");
                 }
             }
             catch (Exception ex)
@@ -89,7 +77,7 @@ namespace GUIClientes
                 MessageBox.Show($"Error: {ex.Message}");
             }
         }
-        
+
 
         private void IngresarCredito_Load(object sender, EventArgs e)
         {

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
+using CONECTOR;
 using Newtonsoft.Json;
 using RestSharp;
 namespace GUIClientes
@@ -26,10 +27,46 @@ namespace GUIClientes
                 string datosJson = HttpUtility.HtmlDecode(objFlujoLectura.ReadToEnd());
                 dynamic datos = JsonConvert.DeserializeObject(datosJson);
                 return datos;
+        }
 
+        public static bool CreateCredito(string urlApi, Credito credito)
+        {
+            HttpWebRequest objPedido = (HttpWebRequest)WebRequest.Create(urlApi);
+            objPedido.Method = "POST";
+            objPedido.ContentType = "application/json";
+            objPedido.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101  Firefox/23.0";
+            objPedido.Proxy = null;
+
+            string jsonData = JsonConvert.SerializeObject(credito);
+            byte[] byteArray = Encoding.UTF8.GetBytes(jsonData);
+
+            using (Stream dataStream = objPedido.GetRequestStream())
+            {
+                dataStream.Write(byteArray, 0, byteArray.Length);
             }
 
-            public static dynamic Post(string urlApi, string json, string autorizacion = null)
+            try
+            {
+                HttpWebResponse objRespuesta = (HttpWebResponse)objPedido.GetResponse();
+                return objRespuesta.StatusCode == HttpStatusCode.Created;
+            }
+            catch (WebException ex)
+            {
+                if (ex.Response != null)
+                {
+                    using (var errorResponse = (HttpWebResponse)ex.Response)
+                    {
+                        if (errorResponse.StatusCode == HttpStatusCode.BadRequest)
+                        {
+                            return false;
+                        }
+                    }
+                }
+                throw;
+            }
+        }
+
+        public static dynamic Post(string urlApi, string json, string autorizacion = null)
 
             {
 
@@ -39,27 +76,73 @@ namespace GUIClientes
 
         }
 
-            public static dynamic Put(string urlApi, string json, string autorizacion = null)
+        public static bool UpdateCredito(string urlApi, int id, Credito credito)
+        {
+            string fullUrl = urlApi + "/actualizar/" + id;
+            HttpWebRequest objPedido = (HttpWebRequest)WebRequest.Create(fullUrl);
+            objPedido.Method = "PUT";
+            objPedido.ContentType = "application/json";
+            objPedido.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101  Firefox/23.0";
+            objPedido.Proxy = null;
 
+            string jsonData = JsonConvert.SerializeObject(credito);
+            byte[] byteArray = Encoding.UTF8.GetBytes(jsonData);
+
+            using (Stream dataStream = objPedido.GetRequestStream())
             {
+                dataStream.Write(byteArray, 0, byteArray.Length);
+            }
 
-                Method op = Method.Put;
-
-            return operaciones(urlApi, json, autorizacion, op);
-
+            try
+            {
+                HttpWebResponse objRespuesta = (HttpWebResponse)objPedido.GetResponse();
+                return objRespuesta.StatusCode == HttpStatusCode.OK;
+            }
+            catch (WebException ex)
+            {
+                if (ex.Response != null)
+                {
+                    using (var errorResponse = (HttpWebResponse)ex.Response)
+                    {
+                        if (errorResponse.StatusCode == HttpStatusCode.NotFound)
+                        {
+                            return false;
+                        }
+                    }
+                }
+                throw;
+            }
         }
 
-            public static dynamic Delete(string urlApi, string json, string autorizacion = null)
+        public static bool DeleteCredito(string urlApi, int id)
+        {
+            HttpWebRequest objPedido = (HttpWebRequest)WebRequest.Create($"{urlApi}/eliminar/{id}");
+            objPedido.Method = "DELETE";
+            objPedido.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101  Firefox/23.0";
+            objPedido.Proxy = null;
 
+            try
             {
-
-                Method op = Method.Delete;
-
-            return operaciones(urlApi, json, autorizacion, op);
-
+                HttpWebResponse objRespuesta = (HttpWebResponse)objPedido.GetResponse();
+                return objRespuesta.StatusCode == HttpStatusCode.OK;
+            }
+            catch (WebException ex)
+            {
+                if (ex.Response != null)
+                {
+                    using (var errorResponse = (HttpWebResponse)ex.Response)
+                    {
+                        if (errorResponse.StatusCode == HttpStatusCode.NotFound)
+                        {
+                            return false;
+                        }
+                    }
+                }
+                throw;
+            }
         }
 
-            private static dynamic operaciones(string urlApi, string json, string autorizacion, Method op)
+        private static dynamic operaciones(string urlApi, string json, string autorizacion, Method op)
 
             {
 
