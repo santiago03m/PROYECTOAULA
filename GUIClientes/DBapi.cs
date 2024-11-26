@@ -52,29 +52,24 @@ namespace GUIClientes
             }
             catch (WebException ex)
             {
+                // Leer el contenido de la respuesta para entender el error
                 if (ex.Response != null)
                 {
-                    using (var errorResponse = (HttpWebResponse)ex.Response)
+                    using (var reader = new StreamReader(ex.Response.GetResponseStream()))
                     {
-                        if (errorResponse.StatusCode == HttpStatusCode.BadRequest)
-                        {
-                            return false;
-                        }
+                        string responseText = reader.ReadToEnd();
+                        MessageBox.Show($"Error del servidor: {responseText}");
                     }
                 }
-                throw;
+                else
+                {
+                    MessageBox.Show($"Error de red: {ex.Message}");
+                }
+
+                return false; // Consideramos que no se creó el registro
             }
         }
 
-        public static dynamic Post(string urlApi, string json, string autorizacion = null)
-
-            {
-
-                Method op = Method.Post;
-
-            return operaciones(urlApi, json, autorizacion, op);
-
-        }
 
         public static bool UpdateCredito(string urlApi, int id, Credito credito)
         {

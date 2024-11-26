@@ -48,7 +48,7 @@ namespace API.Controllers
             {
                 db.Creditos.Add(credito);
                 db.SaveChanges();
-                return CreatedAtRoute("DefaultApi", new { id = credito.ID_Credito }, credito);
+                return Created("api/Creditos/" + credito.ID_Credito, credito);
             }
         }
 
